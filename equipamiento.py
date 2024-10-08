@@ -6,6 +6,7 @@ class Espada():
         self.afinidad = afinidad
         self.critico = False
     
+    #Función que puede activar la capacidad de la espada de realizar golpe crítico
     def activar_afinidad(self):
         if self.afinidad >= random.randint(1,10):
             self.critico = True
@@ -22,6 +23,7 @@ class Escudo():
         self.dureza = dureza   
         self.super_def = False
 
+    #Función que puede activar la capacidad del escudo de realizar super defensa
     def activar_dureza(self):
         if self.dureza >= random.randint(1,10):
             self.super_def = True

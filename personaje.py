@@ -8,7 +8,7 @@ class Personaje():
         self.espada = espada
         self.escudo = escudo
         self.muerto = False
-    
+    #Método que permite al personaje ejecutar ataques
     def atacar(self):
         self.espada.activar_afinidad()
         if self.espada.critico == True:
@@ -17,6 +17,7 @@ class Personaje():
         else:
             return round(self.espada.poder*random.randint(85,100)/100)
 
+    #Método que permite calcular el daño que recibirá el personaje
     def recibir_daño(self, at_opo):
         self.escudo.activar_dureza()
         if self.escudo.super_def == True:
