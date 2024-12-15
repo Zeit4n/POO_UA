@@ -28,6 +28,7 @@ public class GestorDeProductos {
         Double price;
         int stock;
         Producto product;
+        long startTime, endTime;
         do {
             System.out.println("Ingresa una de las siguientes opciones");
             System.out.println("1) Agregar producto a inventario");
@@ -46,32 +47,60 @@ public class GestorDeProductos {
                     I.nextLine();
                     System.out.println("Ingrese el stock del producto que desea añadir al inventario: ");
                     stock = I.nextInt();
+                    startTime = System.nanoTime();
                     product = new Producto(name, price, stock);
                     inventory.agregarProducto(product);
+                    endTime = System.nanoTime();
+                    long time = endTime - startTime;
                     System.out.println("Producto añadido correctamente al inventario");
+                    System.out.println("Tiempo de ejecución: " + time);
                     break;
                 case 2:
                     System.out.println("Ingrese el nombre del producto que desea eliminar del inventario: ");
                     name = I.nextLine();
+                    startTime = System.nanoTime();
+                    boolean eliminado = false;
                     for (Producto prod : inventory.productos) {
                         if (prod.nombre.equals(name)) {
                             inventory.productos.remove(prod);
+                            eliminado = true;
                             break;
                         }
                     }
-                    System.out.println("Producto eliminado exitosamente.");
+                    if (eliminado) {
+                        endTime = System.nanoTime();
+                        time = endTime - startTime;
+                        System.out.println("Producto eliminado exitosamente.");
+                        System.out.println("Tiempo de ejecución: " + time);
+                    } else {
+                        endTime = System.nanoTime();
+                        time = endTime - startTime;
+                        System.out.println("Producto no encontrado.");
+                        System.out.println("Tiempo de ejecución: " + time);
+                    }
                     break;
                 case 3:
+                    startTime = System.nanoTime();
                     if (inventory.productos.size() != 0) {
                         System.out.println(inventory.obtenerProductos());
+                        endTime = System.nanoTime();
+                        time = endTime - startTime;
+                        System.out.println("Tiempo de ejecución: " + time);
                     } else {
                         System.out.println("No hay productos en el inventario");
+                        endTime = System.nanoTime();
+                        time = endTime - startTime;
+                        System.out.println("Tiempo de ejecución: " + time);
                     }                    
                     break;
                 case 4:
+                    startTime = System.nanoTime();
                     guardaProductos file = new guardaProductos();
                     file.guardar(inventory.productos);
+                    endTime = System.nanoTime();
+                    time = endTime - startTime;
                     System.out.println("Archivo con inventario creado exitosamente.");
+                    System.out.println("Tiempo de ejecución: " + time);
                     break;
                 case 5:
                     break;
